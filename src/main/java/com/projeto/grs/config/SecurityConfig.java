@@ -1,7 +1,5 @@
 package com.projeto.grs.config;
 
-import com.projeto.grs.repository.CidadaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,23 +15,21 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig{
 
-    @Autowired
-    userDetailsServiceM userDetailsServiceM;
+    final userDetailsServiceM userDetailsServiceM;
+
+    public SecurityConfig(userDetailsServiceM userDetailsServiceM) {
+        this.userDetailsServiceM = userDetailsServiceM;
+    }
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception{
         return http
-                .csrf().disable()
-                .authorizeHttpRequests()
-                .antMatchers(HttpMethod.GET,"/dashboard/**").permitAll()
-                .antMatchers(HttpMethod.GET,"/produtos/**").hasRole("USER")
-                .antMatchers(HttpMethod.GET,"/cidadoes/**").hasRole("ADMIN")
-                .anyRequest().authenticated().and()
-                //.antMatchers(HttpMethod.GET,"/dashboard/**").hasRole("USER")
-                .httpBasic(Customizer.withDefaults())
-                .userDetailsService(userDetailsServiceM)
+                .csrf().disable().httpBasic(Customizer.withDefaults()).userDetailsService(userDetailsServiceM)
+                .authorizeHttpRequests(autorizacao -> autorizacao
+                        .antMatchers("/dashboard/**").permitAll()
+                        .antMatchers(HttpMethod.GET,"/dashboard/produtos/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET,"/dashboard/pontuacao/**").hasRole("USER"))
                 .build();
-
     }
 
     @Bean
