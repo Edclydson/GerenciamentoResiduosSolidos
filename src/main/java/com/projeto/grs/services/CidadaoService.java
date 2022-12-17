@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 
 import java.util.Optional;
@@ -58,11 +58,11 @@ public class CidadaoService {
     public ResponseEntity resgastar(String cpf, String referencia){
         Pontuacao pontuacaoCidadao = pontosDoCidadao(cpf).get();
         Produto produtoResgatar = produtoService.consultarProduto(referencia).get();
-        if(verificaPontosCidadao(cpf) == true){
-            if (verificaPontosParaSaque(pontuacaoCidadao,produtoResgatar) == true){
+        if(verificaPontosCidadao(cpf)){
+            if (verificaPontosParaSaque(pontuacaoCidadao,produtoResgatar)){
                 try{
                     boolean processoResgateProduto = produtoService.resgateUmProduto(produtoResgatar.getIdProduto().toString());
-                    if(processoResgateProduto == true){
+                    if(processoResgateProduto){
                         atualizaPontosCidadao(pontuacaoCidadao.getIdPontos(), produtoResgatar.getValorPontos());
                         return ResponseEntity.ok("Saque realizado com sucesso!");
                     }else{
