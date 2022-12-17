@@ -41,7 +41,7 @@ public class ProdutoService{
 
     public boolean resgateUmProduto(String referencia){
         Produto produtoResgatado = produtoRepository.findById(Long.parseLong(referencia)).get();
-        if(disponibilidadeProduto(produtoResgatado) == true){
+        if(disponibilidadeProduto(produtoResgatado)){
             try{
                 produtoResgatado.setQuantidadeProduto(produtoResgatado.getQuantidadeProduto() - 1);
                 verificaProdutoZerado(produtoResgatado);
