@@ -6,8 +6,9 @@ Autor: Edclydson Sousa
 Aplicação foi idealizada durante o processo seletivo do JD Talentos, com o objetivo de ajudar na problemática do acúmulo de lixo na cidade de Fortaleza.
 
 Com o objetivo de ser uma plataforma onde o usuário poderá acessar para realizar a troca de pontos por benefícios ou produtos. Os usuários obtém pontos por meio da coleta seletiva, onde a equipe de coleta informa a aplicação a qual usuário está atribuida aquele resíduo coletado e de acordo com a quantidade em Litros informada é convertida em pontos na plataforma. 
-##     Devs
+##     Time
 - [Lindemir Hoffmann](https://github.com/LindemirHoffmann) - Desenvolvedor Front-end
+- [Teresa Sandy](https://www.linkedin.com/in/teresasandy/) - UI/UX Designer
 - [Carlos Filho](https://github.com/Carlosravick) - Desenvolvedor Front-end
 - [Gisele dos Santos](https://github.com/Giselz) - Desenvolvedora Back-end
 - [Rian Erick](https://github.com/RianErick) - Desenvolvedor Back-end
