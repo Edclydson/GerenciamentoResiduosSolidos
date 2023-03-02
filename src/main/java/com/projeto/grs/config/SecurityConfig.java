@@ -26,15 +26,15 @@ public class SecurityConfig{
     @Bean
     SecurityFilterChain config(HttpSecurity http) throws Exception {
         return http
-                .userDetailsService(citizenService)
+//                .userDetailsService(citizenService)
                 .csrf(csfr -> csfr.disable()) // desativado somente por ser ambiente de desenvolvimento
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(Customizer.withDefaults())
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.POST,"/dashboard/cadastro").permitAll()
-                .requestMatchers("/swagger-ui/**").permitAll()
-                .requestMatchers("/v3/api-docs/**").permitAll()
-                .anyRequest().authenticated()
+//                .requestMatchers(HttpMethod.POST,"/dashboard/cadastro").permitAll()
+//                .requestMatchers("/swagger-ui/**").permitAll()
+//                .requestMatchers("/v3/api-docs/**").permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .build();
     }
